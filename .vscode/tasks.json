@@ -1,3 +1,11 @@
+// Available variables which can be used inside of strings.
+// ${workspaceRoot}: the root folder of the team
+// ${file}: the current opened file
+// ${fileBasename}: the current opened file's basename
+// ${fileDirname}: the current opened file's dirname
+// ${fileExtname}: the current opened file's extension
+// ${cwd}: the current working directory of the spawned process
+
 {
     "version": "2.0.0",
     "_runner": "terminal",
@@ -10,15 +18,37 @@
         "args": ["-c"]
     },
     "isShellCommand": true,
-    "showOutput": "silent",
+    // "showOutput": "silent",
     "_runner": "terminal",
     "tasks": [
         {
-            "taskName": "Testing project",
+            "taskName": "Testing project (1testrunner)",
             "args": [
                  "1testrunner",
                 "-runall",
                 "${workspaceRoot}/tests"
+            ],
+            "echoCommand": true,
+            "showOutput": "always",
+            "suppressTaskName": true,
+            // "isBuildCommand": false,
+            "isTestCommand": false,
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "pattern": {
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }
+            }
+        },
+        {
+            "taskName": "Testing project (opm test)",
+            "args": [
+                 "oscript",
+                 "src/opm.os",
+                "test"
             ],
             "echoCommand": true,
             "showOutput": "always",
@@ -58,22 +88,11 @@
             }
         },
         {
-            "taskName": "Opm: package build",
-            "args": [
-                 "opm",
-                "build",
-                "${workspaceRoot}"
-            ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": false
-        },
-        {
             "taskName": "Exec all features",
             "args": [
                  "1bdd",
                 "${workspaceRoot}/features",
+                "-fail-fast", 
                 "-out", 
                 "${workspaceRoot}/exec.log"
             ],
@@ -145,32 +164,6 @@
             }
         },
         {
-            "taskName": "Exec feature + debug",
-            "args": [
-                 "1bdd",
-                "${file}",
-                "-fail-fast", 
-                "-verbose", 
-                "on", 
-                "-out", 
-                "${workspaceRoot}/exec.log"
-            ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            // "isBuildCommand": false,
-            "isTestCommand": false,
-            "problemMatcher": {
-                "fileLocation": "absolute",
-                "pattern": {
-                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
-                    "file": 1,
-                    "location": 2,
-                    "message": 3
-                }
-            }
-        },
-        {
             "taskName": "Generate feature steps",
             "args": [
                  "1bdd",
@@ -193,6 +186,18 @@
                     "message": 3
                 }
             }
+        },
+        {
+            "taskName": "Opm: package build",
+            "args": [
+                "opm",
+                "build",
+                "${workspaceRoot}"
+            ],
+            "echoCommand": true,
+            "showOutput": "always",
+            "suppressTaskName": true,
+            "isBuildCommand": false
         },
         {
             "taskName": "OneScript: compile",
