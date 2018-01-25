@@ -1,2 +1,5 @@
 oscript_modules/
 test-reports/
+coverage/
+*.ospx
+src/oscript.cfg
