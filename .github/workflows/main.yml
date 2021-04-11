@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Onescript Action
-      uses: otymko/setup-onescript@v1.0
+      uses: otymko/setup-onescript@v1.1
       with:
         version: ${{ matrix.oscript_version }}
 
@@ -32,12 +32,8 @@ jobs:
         opm install coverage;
         opm install -l --dev
 
-    - name: Configure env vars for SonarCloud scan
-      run: |
-        echo "::set-env name=PATH::/opt/sonar-scanner/bin:$PATH"
-
     - name: Compute branch name
-      uses: nixel2007/branch-name@v3
+      uses: nelonoel/branch-name@v1.0.1
 
     - name: Run tests
       run: |
