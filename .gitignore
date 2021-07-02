@@ -1,6 +1,6 @@
 oscript_modules/*
 tests-reports/*
-coverage/*
+out/*
 bdd-*.xml
 *.ospx
 src/oscript.cfg
