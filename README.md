@@ -73,16 +73,7 @@ opm update -all
 
 ## Обновление
 
-Пакетный менеджер обновляется вместе с oscript'ом, необходимую версию можно вручную скачать со страницы https://oscript.io/downloads/ 
-
-или с помощью [choco](https://community.chocolatey.org/packages/onescript): 
+Пакетный менеджер обновляется вместе с oscript'ом, необходимую версию можно вручную скачать со страницы https://oscript.io/downloads/ или через сам opm:
 ```
-choco install onescript
-```
-или через [ovm](https://github.com/oscript-library/ovm)
-```
-ovm install dev # Установить последнюю ночную сборку
-ovm install dev stable 1.0.19 # Установить стабильную, ночную сборки и версию 1.0.19
-
-ovm use --install dev # Активировать ночную сборку и установить, если ее нет
+opm update opm
 ```
