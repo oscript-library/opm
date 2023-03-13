@@ -71,3 +71,9 @@ opm update -all
     - windows: ```c:\ProgramData\opm.cfg```
 - OSCRIPT/lib/opm/opm.cfg - каталог установки opm, для совместимости.
 
+## Обновление
+
+Пакетный менеджер обновляется вместе с oscript'ом, необходимую версию можно вручную скачать со страницы https://oscript.io/downloads/ или с помощью choco: 
+```
+choco install onescript
+```
