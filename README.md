@@ -73,7 +73,7 @@ opm update -all
 
 ## Обновление
 
-Пакетный менеджер обновляется вместе с oscript'ом, необходимую версию можно вручную скачать со страницы https://oscript.io/downloads/ или через сам opm:
+Пакетный менеджер обновляется вместе с oscript'ом, необходимую версию которого можно вручную скачать со страницы https://oscript.io/downloads/ или через [ovm](https://github.com/oscript-library/ovm), или через сам opm:
 ```
 opm update opm
 ```
