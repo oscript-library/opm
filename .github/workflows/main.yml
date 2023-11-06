@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        oscript_version: ['1.2.0', 'dev', 'stable']
+        oscript_version: ['stable', '1.8.4']
 
     steps:
     - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        opm install opm@1.0.2
+        opm install opm
         opm install 1testrunner;
         opm install 1bdd;
         opm install coverage;
@@ -40,7 +40,7 @@ jobs:
         oscript ./tasks/coverage.os
 
     - name: SonarCloud Scan on push
-      if:  github.repository == 'oscript-library/opm' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.oscript_version == 'dev'
+      if:  github.repository == 'oscript-library/opm' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.oscript_version == 'stable'
       uses: nixel2007/sonarcloud-github-action@v1.4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,7 +51,7 @@ jobs:
           -Dsonar.branch.name=${{ env.BRANCH_NAME }}
            
     - name: SonarCloud Scan on PR
-      if: github.repository == 'oscript-library/opm' && github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest' && matrix.oscript_version == 'dev'
+      if: github.repository == 'oscript-library/opm' && github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest' && matrix.oscript_version == 'stable'
       uses: nixel2007/sonarcloud-github-action@v1.4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
