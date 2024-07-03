@@ -37,7 +37,10 @@
     И файл существует "oscript_modules/test/folder/src.os"
     И файл существует "oscript_modules/test/folder/src.dll"
 
-Сценарий: Локальная установка пакета сохраняет oscript.cfg из поставки пакета в каталогах исполняемых файлов
+    Когда Я выполняю команду "oscript oscript_modules/test/folder/src.os"
+    И код возврата равен 0
+
+Сценарий: Локальная установка пакета сохраняет существующие oscript.cfg из поставки пакета в каталогах исполняемых файлов
 
     Дано Я выполняю сборку пакета "fixtures/package-with-dependencies" в каталог из переменной "КаталогСборкиПакета"
     И Я сохраняю файл пакета из каталога "КаталогСборкиПакета" в переменную "ИмяФайлаПакета"
@@ -61,15 +64,19 @@
     И файл существует "oscript_modules/test/opm-metadata.xml"
     И каталог существует "oscript_modules/test/folder"
     И файл существует "oscript_modules/test/folder/src.os"
+
+    # существующий файл не меняется
     И файл "oscript_modules/test/folder/oscript.cfg" содержит
     """
-        lib.system=../oscript_modules
-    """
-    И файл "oscript_modules/test/tools/oscript.cfg" содержит
-    """
-        lib.system=../oscript_modules
-        lib.additional=../oscript_modules
+        lib.system=./oscript_modules
     """
 
-    И каталог существует "oscript_modules/fs"
-    И файл существует "oscript_modules/fs/opm-metadata.xml"
+    # файл создан с нуля
+    И файл "oscript_modules/test/without-cfg/oscript.cfg" содержит
+    """
+        lib.additional=../oscript_modules
+    """    
+
+    # правильно отработает только скрипт из without-cfg, другой скрипт не запустится из-за неверного oscript.cfg
+    Когда Я выполняю команду "oscript oscript_modules/test/without-cfg/src.os"
+    И код возврата равен 0
