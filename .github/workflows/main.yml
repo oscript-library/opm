@@ -17,7 +17,7 @@ jobs:
         oscript_version: ['stable', '1.8.4']
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Setup Onescript Action
       uses: otymko/setup-onescript@v1.1
