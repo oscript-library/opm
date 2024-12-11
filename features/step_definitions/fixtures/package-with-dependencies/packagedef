@@ -1,0 +1,7 @@
+﻿Описание.Имя("test")
+		.Версия("1.0.0")
+		.ВключитьФайл("folder")
+		.ВключитьФайл("without-cfg")
+		.ИсполняемыйФайл("folder/src.os", "test")
+		.ИсполняемыйФайл("without-cfg/src.os", "test-without-cfg")
+		;
