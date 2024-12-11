@@ -41,7 +41,7 @@ jobs:
 
     - name: SonarCloud Scan on push
       if:  github.repository == 'oscript-library/opm' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.oscript_version == 'stable'
-      uses: nixel2007/sonarcloud-github-action@v1.4
+      uses: nixel2007/sonarcloud-github-action@v1.5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -52,7 +52,7 @@ jobs:
            
     - name: SonarCloud Scan on PR
       if: github.repository == 'oscript-library/opm' && github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest' && matrix.oscript_version == 'stable'
-      uses: nixel2007/sonarcloud-github-action@v1.4
+      uses: nixel2007/sonarcloud-github-action@v1.5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
