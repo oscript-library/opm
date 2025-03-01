@@ -34,6 +34,7 @@
 		.ВерсияМанифеста("1.0")
 		.Описание("Это пакет для тестирования")
 		.АдресАвтора("mail@server.com")
+		.АдресРепозитория("https://github.com/oscript-library/mypackage")
 		.ЗависитОт("asserts")
 		.ЗависитОт("cmdline",">=2.1","<3.0")
 		.РазработкаЗависитОт("logos")
@@ -76,6 +77,7 @@
 	|    <manifest-version>1.0</manifest-version>
 	|    <description>Это пакет для тестирования</description>
 	|    <author-email>mail@server.com</author-email>
+	|    <repo-address>https://github.com/oscript-library/mypackage</repo-address>
 	|    <tasks>tasks</tasks>
 	|    <depends-on name=""asserts"" dev=""false""/>
 	|    <depends-on name=""cmdline"" dev=""false"" version=""&gt;=2.1"" version-max=""&lt;3.0""/>
@@ -117,6 +119,7 @@
 	|    <manifest-version>1.0</manifest-version>
 	|    <description>Это пакет для тестирования</description>
 	|    <author-email>mail@server.com</author-email>
+	|    <repo-address>https://github.com/oscript-library/mypackage</repo-address>
 	|    <tasks>tasks</tasks>
 	|    <depends-on name=""asserts"" dev=""false""/>
 	|    <depends-on name=""cmdline"" dev=""false"" version=""&gt;=2.1"" version-max=""&lt;3.0""/>
