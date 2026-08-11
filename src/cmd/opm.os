@@ -11,6 +11,7 @@
 #Использовать "../core"
 #Использовать "."
 #Использовать cli
+#Использовать logos
 
 Перем ЭтоWindows;
 
@@ -26,14 +27,15 @@
     Приложение.ДобавитьКоманду("a app", НСтр("ru='Создать ';en='Create '") + ?(ЭтоWindows, "bat", "sh") + НСтр("ru='-файл для запуска скрипта в указанном каталоге';en='-file to run the script in the specified directory'"), Новый КомандаOpm_App);
     Приложение.ДобавитьКоманду("b build", НСтр("ru='Собрать пакет из исходников';en='Build a package from source'"), Новый КомандаOpm_Build);
     Приложение.ДобавитьКоманду("c config", НСтр("ru='Задать пользовательские настройки';en='Configure user settings'"), Новый КомандаOpm_Config);
-    Приложение.ДобавитьКоманду("i install", НСтр("ru='Выполнить установку пакета. 
-                                        |                Если указано имя пакета, происходит установка из хаба или из файла. 
+    Приложение.ДобавитьКоманду("i install", НСтр("ru='Выполнить установку пакета.
+                                        |                Если указано имя пакета, происходит установка из хаба или из файла.
                                         |                В обратном случае устанавливаются зависимости текущего пакета по файлу packagedef.'
                                         |en='Install the package.
-                                        |                If the package name is specified, the installation is performed from the hub or from the file. 
+                                        |                If the package name is specified, the installation is performed from the hub or from the file.
                                         |                Otherwise, the dependencies of the current package are set using the packagedef file.'"),
                                         Новый КомандаOpm_Install);
     Приложение.ДобавитьКоманду("ls list", НСтр("ru='Вывести список пакетов';en='Show list of packages'"), Новый КомандаOpm_List);
+    Приложение.ДобавитьКоманду("login", НСтр("ru='Войти в хаб пакетов и сохранить токен доступа';en='Log in to the package hub and store the access token'"), Новый КомандаOpm_Login);
     Приложение.ДобавитьКоманду("pre prepare", НСтр("ru='Подготовить новый каталог разрабатываемого пакета';en='Prepare a new catalog for the development package'"), Новый КомандаOpm_Prepare);
     Приложение.ДобавитьКоманду("p push", НСтр("ru='Отправить пакет в хаб пакетов';en='Send the package to the package hub'"), Новый КомандаOpm_Push);
     Приложение.ДобавитьКоманду("r run", НСтр("ru='Выполнить произвольную задачу';en='Run a task'"), Новый КомандаOpm_Run);
@@ -44,7 +46,7 @@
         НСтр("ru='Скачать файл пакета и файлы зависимостей';
         |en='Download package and dependencies'"),
         Новый КомандаOpm_Download);
-   
+
     Приложение.Запустить(АргументыКоманднойСтроки);
 
 КонецПроцедуры
@@ -63,7 +65,10 @@
     ЗавершитьРаботу(0);
 
 Исключение
-    Сообщить(ОписаниеОшибки());
+    // человеку — суть, служебная обёртка с модулем и номером строки уходит в отладочный журнал
+    ПодробноеОписание = ОписаниеОшибки();
+    Логирование.ПолучитьЛог(КонстантыOpm.ИмяЛога).Отладка(ПодробноеОписание);
+    Сообщить(ОшибкиСети.Суть(ПодробноеОписание));
 
     ВременныеФайлы.Удалить();
 
