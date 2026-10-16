@@ -33,6 +33,7 @@
                                         |                If the package name is specified, the installation is performed from the hub or from the file. 
                                         |                Otherwise, the dependencies of the current package are set using the packagedef file.'"),
                                         Новый КомандаOpm_Install);
+    Приложение.ДобавитьКоманду("login", НСтр("ru='Войти в хаб пакетов: сохранить токен доступа';en='Log in to the package hub: save the access token'"), Новый КомандаOpm_Login);
     Приложение.ДобавитьКоманду("ls list", НСтр("ru='Вывести список пакетов';en='Show list of packages'"), Новый КомандаOpm_List);
     Приложение.ДобавитьКоманду("pre prepare", НСтр("ru='Подготовить новый каталог разрабатываемого пакета';en='Prepare a new catalog for the development package'"), Новый КомандаOpm_Prepare);
     Приложение.ДобавитьКоманду("p push", НСтр("ru='Отправить пакет в хаб пакетов';en='Send the package to the package hub'"), Новый КомандаOpm_Push);
